@@ -6,6 +6,7 @@ package controller;
 
 import kriptografi.A_RailFence;
 import kriptografi.A_Scytale;
+import kriptografi.A_SuperEncryption;
 import kriptografi.A_XOR;
 import view.UI_Kriptografi;
 
@@ -17,6 +18,7 @@ public class C_Kripto {
     public static final String ALGO_XOR = "XOR";
     public static final String ALGO_RAIL = "RAIL";
     public static final String ALGO_SCYTALE = "SCYTALE";
+    public static final String ALGO_SUPER = "SUPER";
     public static final int ENCODE = 0;
     public static final int DECODE = 1;
     
@@ -24,6 +26,7 @@ public class C_Kripto {
     A_XOR algoXOR = null;
     A_RailFence algoRail = null;
     A_Scytale algoScytale = null;
+    A_SuperEncryption algoSuper = null;
     String algorithm;
     int mode;
 
@@ -43,6 +46,9 @@ public class C_Kripto {
                 break;
             case ALGO_SCYTALE:
                 UI.getL_Judul().setText("ALGORITMA SCYTALE");
+                break;
+            case ALGO_SUPER:
+                UI.getL_Judul().setText("ALGORITMA SUPER");
                 break;
             default:
                 System.out.println("Set Title Case Error");
@@ -82,6 +88,17 @@ public class C_Kripto {
                 else{
                     algoScytale.A_decode();
                     UI.getTextArea2().setText(algoScytale.getPlainText());
+                }
+                break;
+            case ALGO_SUPER:
+                algoSuper = new A_SuperEncryption(UI.getTextArea1().getText(), Integer.parseInt(UI.getTKey().getText()), mode);
+                if (mode == ENCODE) {
+                    algoSuper.A_encode();
+                    UI.getTextArea2().setText(algoSuper.getCipherText());
+                }
+                else{
+                    algoSuper.A_decode();
+                    UI.getTextArea2().setText(algoSuper.getPlainText());
                 }
                 break;
             default:

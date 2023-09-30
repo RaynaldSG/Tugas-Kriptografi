@@ -1,14 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package kriptografi;
 
-
-/**
- *
- * @author Raynald Krisnawan
- */
 public class A_RailFence {
     public static final int ENCODE = 0;
     public static final int DECODE = 1;
@@ -23,10 +14,10 @@ public class A_RailFence {
         this.mode = mode;
         text = text.replace(" ", "");
         if (mode == 0) {
-            this.plainText = text.toUpperCase();;
+            this.plainText = text;
         }
         else{
-            this.cipherText = text.toUpperCase();;
+            this.cipherText = text;
         }
         
     }

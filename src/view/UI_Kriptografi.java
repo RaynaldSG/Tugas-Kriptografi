@@ -13,6 +13,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import ErrorHandler.H_Error;
+
 /**
  *
  * @author Raynald Krisnawan
@@ -231,10 +233,24 @@ public class UI_Kriptografi extends javax.swing.JFrame {
         if (algorithm == C_Kripto.ALGO_XOR) {
             if (TKey.getText().length() >= 1 && !(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)){
                 TKey.setEditable(false);
+                H_Error.LimitField();
             }
             else{
                 TKey.setEditable(true);
             }
+        }
+        else if (algorithm == C_Kripto.ALGO_SUPER){
+            if (TKey.getText().length() >= 1 && !(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)){
+                TKey.setEditable(false);
+            }
+            else if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE && TKey.getText().length() <= 1) {
+               TKey.setEditable(true);
+               return;
+            }
+            else{
+                TKey.setEditable(false);
+            }
+            H_Error.SuperKey();
         }
         else{
             if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -242,13 +258,19 @@ public class UI_Kriptografi extends javax.swing.JFrame {
             }
             else{
                 TKey.setEditable(false);
+                H_Error.notInt(); 
             }
         }
     }//GEN-LAST:event_TKeyKeyPressed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
-        C_UI.buttonPressed();
+        if(TKey.getText().isEmpty()){
+            H_Error.empty_key();
+        }
+        else{
+            C_UI.buttonPressed();
+        }
     }//GEN-LAST:event_submitActionPerformed
 
     /**

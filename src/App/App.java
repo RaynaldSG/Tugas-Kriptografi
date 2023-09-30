@@ -4,7 +4,9 @@
  */
 package App;
 
+import kriptografi.A_RailFence;
 import kriptografi.A_Scytale;
+import kriptografi.A_SuperEncryption;
 import view.UI_Menu;
 
 /**
@@ -16,7 +18,13 @@ public class App {
         UI_Menu UI = new UI_Menu();
         UI.setVisible(true);
 
+        // A_RailFence rail = new A_RailFence("teks coba coba haha", 7, 0);
+        // System.out.println(rail.A_encode());
+
         // A_Scytale tes = new A_Scytale("JNKMUYUTIAPARENTNZUKFIYZSNOKOZAIRAGZ", 6, 1);
         // System.out.println(tes.A_decode());
+
+        // A_SuperEncryption tes2 = new A_SuperEncryption("RNDALZAYZ", 3, 1);
+        // System.out.println(tes2.A_decode());
     }
 }

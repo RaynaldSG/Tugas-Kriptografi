@@ -38,12 +38,13 @@ public class A_Scytale {
             }
         }
 
-        for(int i = 0; i < (int) Math.ceil(plainText.length()/(key*1.0f)); i++){
-            for(int j = 0; j < key; j++){
-                System.out.print(tabel[i][j] + " ");
-            }
-            System.out.println();
-        }
+        // Tes
+        // for(int i = 0; i < (int) Math.ceil(plainText.length()/(key*1.0f)); i++){
+        //     for(int j = 0; j < key; j++){
+        //         System.out.print(tabel[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
 
         text_lenght_counter = 0;
         for(int i = 0; i < key; i++){
