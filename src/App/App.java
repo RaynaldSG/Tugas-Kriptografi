@@ -4,9 +4,6 @@
  */
 package App;
 
-import kriptografi.A_RailFence;
-import kriptografi.A_Scytale;
-import kriptografi.A_SuperEncryption;
 import view.UI_Menu;
 
 /**
