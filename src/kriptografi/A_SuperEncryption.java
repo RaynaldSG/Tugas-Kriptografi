@@ -78,5 +78,17 @@ public class A_SuperEncryption {
     public void setKey(char key) {
         this.key = key;
     }
+
+    public A_RailFence getAlgoFence() {
+        return algoRail;
+    }
+
+    public A_Scytale getAlgoScy() {
+        return algoScytale;
+    }
+
+    public A_XOR getAlgoXOR() {
+        return algoXOR;
+    }
     
 }

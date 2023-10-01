@@ -10,6 +10,7 @@ import kriptografi.A_SuperEncryption;
 import kriptografi.A_XOR;
 import model.T_Rail;
 import model.T_Scytale;
+import model.T_Super;
 import model.T_XOR;
 import view.UI_Kriptografi;
 
@@ -106,6 +107,7 @@ public class C_Kripto {
                     algoSuper.A_decode();
                     UI.getTextArea2().setText(algoSuper.getPlainText());
                 }
+                setStepArea();
                 break;
             default:
                 System.out.println("Button Action error");
@@ -127,8 +129,8 @@ public class C_Kripto {
                 UI.getT_Langkah().setModel(tabelScytale);
                 break;
             case ALGO_SUPER:
-                T_XOR tabXor = new T_XOR(algoXOR);
-                UI.getT_Langkah().setModel(tabXor);
+                T_Super tabSuper = new T_Super(algoSuper.getAlgoFence(), algoSuper.getAlgoScy(), algoSuper.getAlgoXOR());
+                UI.getT_Langkah().setModel(tabSuper);
                 break;
             default:
                 System.out.println("Button Action error");

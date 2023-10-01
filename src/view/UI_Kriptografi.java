@@ -280,17 +280,13 @@ public class UI_Kriptografi extends javax.swing.JFrame {
             }
         }
         else if (algorithm == C_Kripto.ALGO_SUPER){
-            if (TKey.getText().length() >= 1 && !(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)){
-                TKey.setEditable(false);
-            }
-            else if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE && TKey.getText().length() <= 1) {
+            if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                TKey.setEditable(true);
-               return;
             }
             else{
                 TKey.setEditable(false);
-            }
-            H_Error.SuperKey();
+                H_Error.notInt(); 
+            } 
         }
         
     }//GEN-LAST:event_TKeyKeyPressed
