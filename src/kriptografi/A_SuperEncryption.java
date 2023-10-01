@@ -30,14 +30,14 @@ public class A_SuperEncryption {
         cipherText = algoScytale.A_encode();
         algoRail = new A_RailFence(cipherText, key, mode);
         cipherText = algoRail.A_encode();
-        algoXOR = new A_XOR(cipherText, (char)(key + '0'), mode);
+        algoXOR = new A_XOR(cipherText, String.valueOf(key), mode);
         cipherText = algoXOR.A_encode();
 
         return cipherText;
     }
     
     public String A_decode(){
-        algoXOR = new A_XOR(cipherText, (char)(key + '0'), mode);
+        algoXOR = new A_XOR(cipherText, String.valueOf(key), mode);
         plainText = algoXOR.A_decode();
         algoRail = new A_RailFence(plainText, key, mode);
         plainText = algoRail.A_decode();

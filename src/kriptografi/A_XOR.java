@@ -22,10 +22,10 @@ public class A_XOR {
         this.key = key;
         this.mode = mode;
         if (mode == 0) {
-            this.plainText = text.toUpperCase();
+            this.plainText = text;
         }
         else{
-            this.cipherText = text.toUpperCase();
+            this.cipherText = text;
         }
     }
     
@@ -40,10 +40,11 @@ public class A_XOR {
                 keyASCII = (int)key.charAt(keyCounter);
                 charASCII = (int)plainText.charAt(i);
                 encodeASCII = charASCII ^ keyASCII;
+                // System.out.println(charASCII + ":" + keyASCII + "= " + encodeASCII); Testing
                 this.cipherText = this.cipherText + (char)encodeASCII;
                 keyCounter++;
             }
-            else{
+            if(keyCounter == key.length()){
                 keyCounter = 0;
             }
         }
@@ -64,7 +65,7 @@ public class A_XOR {
                 this.plainText = this.plainText + (char)encodeASCII;
                 keyCounter++;
             }
-            else{
+            if(keyCounter == key.length()){
                 keyCounter = 0;
             }
         }
@@ -95,11 +96,11 @@ public class A_XOR {
         this.mode = mode;
     }
 
-    public char getKey() {
+    public String getKey() {
         return key;
     }
 
-    public void setKey(char key) {
+    public void setKey(String key) {
         this.key = key;
     }
     

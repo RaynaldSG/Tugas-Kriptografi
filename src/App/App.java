@@ -4,6 +4,7 @@
  */
 package App;
 
+import kriptografi.A_XOR;
 import view.UI_Menu;
 
 /**
@@ -12,14 +13,18 @@ import view.UI_Menu;
  */
 public class App {
     public static void main(String[] args) {
-        UI_Menu UI = new UI_Menu();
-        UI.setVisible(true);
+        // UI_Menu UI = new UI_Menu();
+        // UI.setVisible(true);
 
         // A_RailFence rail = new A_RailFence("teks coba coba haha", 7, 0);
         // System.out.println(rail.A_encode());
 
         // A_Scytale tes = new A_Scytale("JNKMUYUTIAPARENTNZUKFIYZSNOKOZAIRAGZ", 6, 1);
         // System.out.println(tes.A_decode());
+
+        A_XOR tesx = new A_XOR("!%&' !", "D", 0);
+        System.out.println(tesx.A_encode());
+        System.out.println(tesx.A_decode());
 
         // A_SuperEncryption tes2 = new A_SuperEncryption("RNDALZAYZ", 3, 1);
         // System.out.println(tes2.A_decode());
