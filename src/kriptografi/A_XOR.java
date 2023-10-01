@@ -16,9 +16,9 @@ public class A_XOR {
     private String plainText = "";
     private String cipherText = "";
     private int mode;
-    private char key;
+    private String key;
 
-    public A_XOR(String text, char key, int mode) {
+    public A_XOR(String text, String key, int mode) {
         this.key = key;
         this.mode = mode;
         if (mode == 0) {
@@ -33,12 +33,19 @@ public class A_XOR {
         int charASCII;
         int keyASCII;
         int encodeASCII;
+        int keyCounter = 0;
         
-        keyASCII = (int)key;
         for(int i = 0; i < plainText.length(); i++){
-            charASCII = (int)plainText.charAt(i);
-            encodeASCII = charASCII ^ keyASCII;
-            this.cipherText = this.cipherText + (char)encodeASCII;
+            if(keyCounter < key.length()){
+                keyASCII = (int)key.charAt(keyCounter);
+                charASCII = (int)plainText.charAt(i);
+                encodeASCII = charASCII ^ keyASCII;
+                this.cipherText = this.cipherText + (char)encodeASCII;
+                keyCounter++;
+            }
+            else{
+                keyCounter = 0;
+            }
         }
         return cipherText;
     }
@@ -47,12 +54,19 @@ public class A_XOR {
         int charASCII;
         int keyASCII;
         int encodeASCII;
+        int keyCounter = 0;
         
-        keyASCII = (int)key;
         for(int i = 0; i < cipherText.length(); i++){
-            charASCII = (int)cipherText.charAt(i);
-            encodeASCII = charASCII ^ keyASCII;
-            this.plainText = this.plainText + (char)encodeASCII;
+            if(keyCounter < key.length()){
+                keyASCII = (int)key.charAt(keyCounter);
+                charASCII = (int)cipherText.charAt(i);
+                encodeASCII = charASCII ^ keyASCII;
+                this.plainText = this.plainText + (char)encodeASCII;
+                keyCounter++;
+            }
+            else{
+                keyCounter = 0;
+            }
         }
         return plainText;
     }

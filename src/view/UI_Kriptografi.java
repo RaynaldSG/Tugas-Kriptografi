@@ -230,13 +230,23 @@ public class UI_Kriptografi extends javax.swing.JFrame {
 
     private void TKeyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKeyKeyPressed
         // TODO add your handling code here:
-        if (algorithm == C_Kripto.ALGO_XOR) {
-            if (TKey.getText().length() >= 1 && !(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)){
-                TKey.setEditable(false);
-                H_Error.LimitField();
+        // LIMIT 1
+        // if (algorithm == C_Kripto.ALGO_XOR) {
+        //     if (TKey.getText().length() >= 1 && !(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)){
+        //         TKey.setEditable(false);
+        //         H_Error.LimitField();
+        //     }
+        //     else{
+        //         TKey.setEditable(true);
+        //     }
+        // }
+        if (algorithm == C_Kripto.ALGO_RAIL || algorithm == C_Kripto.ALGO_SCYTALE){
+            if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+               TKey.setEditable(true);
             }
             else{
-                TKey.setEditable(true);
+                TKey.setEditable(false);
+                H_Error.notInt(); 
             }
         }
         else if (algorithm == C_Kripto.ALGO_SUPER){
@@ -252,15 +262,7 @@ public class UI_Kriptografi extends javax.swing.JFrame {
             }
             H_Error.SuperKey();
         }
-        else{
-            if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-               TKey.setEditable(true);
-            }
-            else{
-                TKey.setEditable(false);
-                H_Error.notInt(); 
-            }
-        }
+        
     }//GEN-LAST:event_TKeyKeyPressed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed

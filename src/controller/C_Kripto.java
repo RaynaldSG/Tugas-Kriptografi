@@ -58,7 +58,7 @@ public class C_Kripto {
     public void buttonPressed(){
         switch (this.algorithm) {
             case ALGO_XOR:
-                algoXOR = new A_XOR(UI.getTextArea1().getText(), UI.getTKey().getText().charAt(0), mode);
+                algoXOR = new A_XOR(UI.getTextArea1().getText(), UI.getTKey().getText(), mode);
                 if (mode == ENCODE) {
                     algoXOR.A_encode();
                     UI.getTextArea2().setText(algoXOR.getCipherText());
