@@ -8,6 +8,10 @@ import kriptografi.A_RailFence;
 import kriptografi.A_Scytale;
 import kriptografi.A_SuperEncryption;
 import kriptografi.A_XOR;
+import model.T_Rail;
+import model.T_Scytale;
+import model.T_Super;
+import model.T_XOR;
 import view.UI_Kriptografi;
 
 /**
@@ -67,6 +71,7 @@ public class C_Kripto {
                     algoXOR.A_decode();
                     UI.getTextArea2().setText(algoXOR.getPlainText());
                 }
+                setStepArea();
                 break;
             case ALGO_RAIL:
                 algoRail = new A_RailFence(UI.getTextArea1().getText(), Integer.parseInt(UI.getTKey().getText()), mode);
@@ -78,6 +83,7 @@ public class C_Kripto {
                     algoRail.A_decode();
                     UI.getTextArea2().setText(algoRail.getPlainText());
                 }
+                setStepArea();
                 break;
             case ALGO_SCYTALE:
                 algoScytale = new A_Scytale(UI.getTextArea1().getText(), Integer.parseInt(UI.getTKey().getText()), mode);
@@ -89,6 +95,7 @@ public class C_Kripto {
                     algoScytale.A_decode();
                     UI.getTextArea2().setText(algoScytale.getPlainText());
                 }
+                setStepArea();
                 break;
             case ALGO_SUPER:
                 algoSuper = new A_SuperEncryption(UI.getTextArea1().getText(), Integer.parseInt(UI.getTKey().getText()), mode);
@@ -100,6 +107,30 @@ public class C_Kripto {
                     algoSuper.A_decode();
                     UI.getTextArea2().setText(algoSuper.getPlainText());
                 }
+                setStepArea();
+                break;
+            default:
+                System.out.println("Button Action error");
+        }
+    }
+
+    public void setStepArea(){
+        switch (this.algorithm) {
+            case ALGO_XOR:
+                T_XOR tabelXor = new T_XOR(algoXOR);
+                UI.getT_Langkah().setModel(tabelXor);
+                break;
+            case ALGO_RAIL:
+                T_Rail tabelRail = new T_Rail(algoRail);
+                UI.getT_Langkah().setModel(tabelRail);
+                break;
+            case ALGO_SCYTALE:
+                T_Scytale tabelScytale = new T_Scytale(algoScytale);
+                UI.getT_Langkah().setModel(tabelScytale);
+                break;
+            case ALGO_SUPER:
+                T_Super tabSuper = new T_Super(algoSuper.getAlgoFence(), algoSuper.getAlgoScy(), algoSuper.getAlgoXOR());
+                UI.getT_Langkah().setModel(tabSuper);
                 break;
             default:
                 System.out.println("Button Action error");
