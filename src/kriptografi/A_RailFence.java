@@ -8,16 +8,17 @@ public class A_RailFence {
     private String cipherText = "";
     private int mode;
     private int key;
+    private char[][] stepTable;
 
     public A_RailFence(String text, int key, int mode) {
         this.key = key;
         this.mode = mode;
         text = text.replace(" ", "");
         if (mode == 0) {
-            this.plainText = text;
+            this.plainText = text.toUpperCase();
         }
         else{
-            this.cipherText = text;
+            this.cipherText = text.toUpperCase();
         }
         
     }
@@ -56,7 +57,7 @@ public class A_RailFence {
                 }
             }
         }
-
+        setTable(tabel);
         return cipherText;
     }
     
@@ -117,8 +118,28 @@ public class A_RailFence {
                 }
             }
         }
-        
+        setTable(tabel);
         return plainText;
+    }
+
+    private void setTable(char[][] stepTable){
+        this.stepTable = stepTable;
+    }
+
+    public char[][] getTabel() {
+        // Test
+        // for(int i = 0; i < key; i++){
+        //     for(int j = 0; j < plainText.length(); j++){
+        //         if(stepTable[j][i] != 0){
+        //             System.out.print(stepTable[j][i] + "|");
+        //         }
+        //         else{
+        //             System.out.print(" |");
+        //         }
+        //     }
+        //     System.out.println();
+        // }
+        return stepTable;
     }
 
     public String getPlainText() {

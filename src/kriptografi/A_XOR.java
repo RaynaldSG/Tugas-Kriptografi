@@ -17,10 +17,12 @@ public class A_XOR {
     private String cipherText = "";
     private int mode;
     private String key;
+    private String[][] stepTable;
 
     public A_XOR(String text, String key, int mode) {
         this.key = key;
         this.mode = mode;
+        this.stepTable = new String[6][text.length()];
         if (mode == 0) {
             this.plainText = text;
         }
@@ -42,6 +44,11 @@ public class A_XOR {
                 encodeASCII = charASCII ^ keyASCII;
                 // System.out.println(charASCII + ":" + keyASCII + "= " + encodeASCII); Testing
                 this.cipherText = this.cipherText + (char)encodeASCII;
+                stepTable[0][i] = "" + plainText.charAt(i);
+                stepTable[1][i] = "" + key.charAt(keyCounter);
+                stepTable[3][i] = String.valueOf(charASCII);
+                stepTable[4][i] = String.valueOf(keyASCII);
+                stepTable[5][i] = String.valueOf(encodeASCII);
                 keyCounter++;
             }
             if(keyCounter == key.length()){
@@ -54,15 +61,20 @@ public class A_XOR {
     public String A_decode(){
         int charASCII;
         int keyASCII;
-        int encodeASCII;
+        int decodeASCII;
         int keyCounter = 0;
         
         for(int i = 0; i < cipherText.length(); i++){
             if(keyCounter < key.length()){
                 keyASCII = (int)key.charAt(keyCounter);
                 charASCII = (int)cipherText.charAt(i);
-                encodeASCII = charASCII ^ keyASCII;
-                this.plainText = this.plainText + (char)encodeASCII;
+                decodeASCII = charASCII ^ keyASCII;
+                this.plainText = this.plainText + (char)decodeASCII;
+                stepTable[0][i] = "" + plainText.charAt(i);
+                stepTable[1][i] = "" + key.charAt(keyCounter);
+                stepTable[3][i] = String.valueOf(charASCII);
+                stepTable[4][i] = String.valueOf(keyASCII);
+                stepTable[5][i] = String.valueOf(decodeASCII);
                 keyCounter++;
             }
             if(keyCounter == key.length()){
@@ -70,6 +82,10 @@ public class A_XOR {
             }
         }
         return plainText;
+    }
+
+    public String[][] getTabel() {
+        return stepTable;
     }
 
     public String getPlainText() {
@@ -103,5 +119,7 @@ public class A_XOR {
     public void setKey(String key) {
         this.key = key;
     }
+    
+    
     
 }

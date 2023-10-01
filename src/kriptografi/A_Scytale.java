@@ -8,6 +8,7 @@ public class A_Scytale {
     private String cipherText = "";
     private int mode;
     private int key;
+    private char[][] stepTable;
 
     public A_Scytale(String text, int key, int mode) {
         this.key = key;
@@ -55,7 +56,7 @@ public class A_Scytale {
                 cipherText = cipherText + tabel[j][i];
             }
         }
-
+        setTable(tabel);
         return cipherText;
     }
     
@@ -68,9 +69,9 @@ public class A_Scytale {
             for(int j = 0; j < (int) Math.ceil(cipherText.length()/(key*1.0f)); j++){
                 tabel[j][i] = cipherText.charAt(text_lenght_counter);
                 text_lenght_counter++;
-                if(text_lenght_counter >= cipherText.length()){
-                    break;
-                }
+            }
+            if(text_lenght_counter >= cipherText.length()){
+                break;
             }
         }
 
@@ -94,8 +95,16 @@ public class A_Scytale {
                 // }
             }
         }
-        
+        setTable(tabel);
         return plainText;
+    }
+
+    private void setTable(char[][] stepTable){
+        this.stepTable = stepTable;
+    }
+
+    public char[][] getTabel() {
+        return stepTable;
     }
 
     public String getPlainText() {
