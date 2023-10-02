@@ -67,11 +67,12 @@ public class A_Scytale {
 
         for(int i = 0; i < key; i++){
             for(int j = 0; j < (int) Math.ceil(cipherText.length()/(key*1.0f)); j++){
+                if(text_lenght_counter >= cipherText.length()){
+                    tabel[j][i] = 'Z';
+                    continue;
+                }
                 tabel[j][i] = cipherText.charAt(text_lenght_counter);
                 text_lenght_counter++;
-            }
-            if(text_lenght_counter >= cipherText.length()){
-                break;
             }
         }
 
@@ -90,9 +91,9 @@ public class A_Scytale {
             for(int j = 0; j < key; j++){
                 plainText = plainText + tabel[i][j];
                 text_lenght_counter++;
-                // if(text_lenght_counter == cipherText.length()){
-                //     break;
-                // }
+                if(text_lenght_counter == cipherText.length()){
+                    plainText = plainText + 'Z';
+                }
             }
         }
         setTable(tabel);
