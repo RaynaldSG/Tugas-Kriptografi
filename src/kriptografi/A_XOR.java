@@ -70,7 +70,7 @@ public class A_XOR {
                 charASCII = (int)cipherText.charAt(i);
                 decodeASCII = charASCII ^ keyASCII;
                 this.plainText = this.plainText + (char)decodeASCII;
-                stepTable[0][i] = "" + plainText.charAt(i);
+                stepTable[0][i] = "" + cipherText.charAt(i);
                 stepTable[1][i] = "" + key.charAt(keyCounter);
                 stepTable[3][i] = String.valueOf(charASCII);
                 stepTable[4][i] = String.valueOf(keyASCII);
