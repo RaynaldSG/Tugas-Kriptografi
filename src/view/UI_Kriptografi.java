@@ -271,8 +271,12 @@ public class UI_Kriptografi extends javax.swing.JFrame {
         //     }
         // }
         if (algorithm == C_Kripto.ALGO_RAIL || algorithm == C_Kripto.ALGO_SCYTALE){
-            if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (evt.getKeyChar() >= '1' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                TKey.setEditable(true);
+            }
+            else if(evt.getKeyChar() == '0'){
+                TKey.setEditable(false);
+                H_Error.zeroKey(); 
             }
             else{
                 TKey.setEditable(false);
@@ -280,8 +284,12 @@ public class UI_Kriptografi extends javax.swing.JFrame {
             }
         }
         else if (algorithm == C_Kripto.ALGO_SUPER){
-            if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (evt.getKeyChar() >= '1' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                TKey.setEditable(true);
+            }
+            else if(evt.getKeyChar() == '0'){
+                TKey.setEditable(false);
+                H_Error.zeroKey(); 
             }
             else{
                 TKey.setEditable(false);

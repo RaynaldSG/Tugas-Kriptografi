@@ -3,7 +3,7 @@ package kriptografi;
 public class A_RailFence {
     public static final int ENCODE = 0;
     public static final int DECODE = 1;
-    
+
     private String plainText = "";
     private String cipherText = "";
     private int mode;
@@ -16,43 +16,41 @@ public class A_RailFence {
         text = text.replace(" ", "");
         if (mode == 0) {
             this.plainText = text.toUpperCase();
-        }
-        else{
+        } else {
             this.cipherText = text.toUpperCase();
         }
-        
+
     }
 
-    public String A_encode(){
+    public String A_encode() {
         char[][] tabel = new char[plainText.length()][key];
         int rowFence = 0;
         boolean turn = false;
 
-        for(int i = 0; i < plainText.length(); i++){
-            if(rowFence < key && !turn){
+        for (int i = 0; i < plainText.length(); i++) {
+            if (rowFence < key && !turn) {
                 tabel[i][rowFence] = plainText.charAt(i);
                 rowFence++;
-            }
-            else{
-                if(rowFence == key){
+            } else {
+                if (rowFence == key) {
                     rowFence--;
                 }
                 rowFence--;
-                if(rowFence < 0){
+                if (rowFence < 0) {
                     rowFence = 0;
                 }
                 tabel[i][rowFence] = plainText.charAt(i);
                 turn = true;
-                if(rowFence == 0){
+                if (rowFence == 0) {
                     turn = false;
                     rowFence++;
                 }
             }
         }
 
-        for(int i = 0; i < key; i++){
-            for(int j = 0; j < plainText.length(); j++){
-                if(tabel[j][i] != 0){
+        for (int i = 0; i < key; i++) {
+            for (int j = 0; j < plainText.length(); j++) {
+                if (tabel[j][i] != 0) {
                     cipherText = cipherText + tabel[j][i];
                 }
             }
@@ -60,8 +58,8 @@ public class A_RailFence {
         setTable(tabel);
         return cipherText;
     }
-    
-    public String A_decode(){
+
+    public String A_decode() {
         char[][] tabel = new char[cipherText.length()][key];
         int rowFence = 0;
         int textCounter = 0;
@@ -70,49 +68,57 @@ public class A_RailFence {
         int jCol = 0;
         boolean turn = false;
 
-        for(int i = 0; i < key; i++){
+        for (int i = 0; i < key; i++) {
             checker = false;
 
-            if(i == key - 1 || i == 0){
-                for(j = rowFence; j < cipherText.length(); j = j + (key)*2 - 2){
+            if (i == key - 1 || i == 0 || key == 1) {
+                for (j = rowFence; j < cipherText.length(); j = j + (key) * 2 - 2) {
+                    if (textCounter >= cipherText.length()) {
+                        break;
+                    }
                     tabel[j][i] = cipherText.charAt(textCounter);
                     textCounter++;
-                }
-            }
-            else{
-                for(j = rowFence; j < cipherText.length(); j = j + jCol){
-                    if(!checker){
-                        tabel[j][i] = cipherText.charAt(textCounter);
-                        textCounter++;
-                        jCol = (key - i)*2 - 2;
-                        checker = true;
+                    if(key == 1){
+                        j++;
                     }
-                    else if(checker){
+                }
+            } else {
+                for (j = rowFence; j < cipherText.length(); j = j + jCol) {
+                    if (!checker) {
                         tabel[j][i] = cipherText.charAt(textCounter);
                         textCounter++;
-                        jCol = i*2;
+                        jCol = (key - i) * 2 - 2;
+                        checker = true;
+                    } else if (checker) {
+                        tabel[j][i] = cipherText.charAt(textCounter);
+                        textCounter++;
+                        jCol = i * 2;
                         checker = false;
                     }
                 }
             }
-            
+
             rowFence = key - (key - (i + 1));
         }
 
         rowFence = 0;
-        for(int i = 0; i < cipherText.length(); i++){
-            if(rowFence < key && !turn){
+        for (int i = 0; i < cipherText.length(); i++) {
+            if (rowFence < key && !turn) {
                 plainText = plainText + tabel[i][rowFence];
                 rowFence++;
-            }
-            else{
-                if(rowFence == key){
+            } else {
+                if (rowFence == key) {
                     rowFence--;
                 }
-                rowFence--;
-                plainText = plainText + tabel[i][rowFence];
+                if (key == 1) {
+                    plainText = plainText + tabel[i][rowFence];
+                }
+                else{
+                    rowFence--;
+                    plainText = plainText + tabel[i][rowFence];
+                }
                 turn = true;
-                if(rowFence == 0){
+                if (rowFence == 0) {
                     turn = false;
                     rowFence++;
                 }
@@ -122,22 +128,22 @@ public class A_RailFence {
         return plainText;
     }
 
-    private void setTable(char[][] stepTable){
+    private void setTable(char[][] stepTable) {
         this.stepTable = stepTable;
     }
 
     public char[][] getTabel() {
         // Test
         // for(int i = 0; i < key; i++){
-        //     for(int j = 0; j < plainText.length(); j++){
-        //         if(stepTable[j][i] != 0){
-        //             System.out.print(stepTable[j][i] + "|");
-        //         }
-        //         else{
-        //             System.out.print(" |");
-        //         }
-        //     }
-        //     System.out.println();
+        // for(int j = 0; j < plainText.length(); j++){
+        // if(stepTable[j][i] != 0){
+        // System.out.print(stepTable[j][i] + "|");
+        // }
+        // else{
+        // System.out.print(" |");
+        // }
+        // }
+        // System.out.println();
         // }
         return stepTable;
     }
