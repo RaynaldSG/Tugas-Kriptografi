@@ -26,4 +26,8 @@ public class H_Error {
     public static void SuperKey(){
         JOptionPane.showMessageDialog(null, "Input Maximal Adalah 1 Dan Harus Berupa Angka", "Empty Key", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public static void zeroKey(){
+        JOptionPane.showMessageDialog(null, "Input Tidak Boleh 0", "Empty Key", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
