@@ -57,8 +57,11 @@ public class T_Super extends AbstractTableModel{
                 return algoScytale.getTabel()[rowIndex][columnIndex];
             }
         }
-        if (rowIndex < scyR + fenceR - 1 && rowIndex >= scyR ){
+        if (rowIndex < scyR + fenceR - 1 && rowIndex >= scyR && columnIndex < algoFence.getTabel().length){
             if (algoFence.getTabel()[columnIndex][rowIndex - scyR] == 0 && rowIndex <= fenceR - 1) {
+                return " ";
+            }
+            else if(columnIndex >= algoFence.getTabel().length){
                 return " ";
             }
             else{
@@ -77,7 +80,10 @@ public class T_Super extends AbstractTableModel{
                 }
             }
         else{
-            if(rowIndex == scyR + fenceR + 1){
+            if (columnIndex >= algoXOR.getTabel()[0].length){
+                return " ";
+            }
+            else if(rowIndex == scyR + fenceR + 1){
                 return algoXOR.getTabel()[0][columnIndex];
             }
             else if(rowIndex == scyR + fenceR + 2){
