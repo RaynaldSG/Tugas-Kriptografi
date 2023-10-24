@@ -24,7 +24,7 @@ public class A_Scytale {
     }
 
     public String A_encode(){
-        char[][] tabel = new char[(int) Math.ceil(plainText.length()/(key*1.0f))][key];
+        char[][] tabel = new char[(int) Math.ceil(plainText.length()/(key*1.0f))][key]; //Pembuatan tabel scytale
         int text_lenght_counter = 0;
 
         for(int i = 0; i < (int) Math.ceil(plainText.length()/(key*1.0f)); i++){

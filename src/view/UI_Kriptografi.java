@@ -319,8 +319,11 @@ public class UI_Kriptografi extends javax.swing.JFrame {
                 TKey.setEditable(true);
             }
             else if(evt.getKeyChar() == '0'){
-                TKey.setEditable(false);
-                H_Error.zeroKey();
+                System.out.println(TKey.getText().length());
+                if(TKey.getText().length() == 0){
+                    TKey.setEditable(false);
+                    H_Error.zeroKey();
+                } 
             }
             else{
                 TKey.setEditable(false);
