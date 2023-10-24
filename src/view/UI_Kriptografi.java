@@ -56,8 +56,8 @@ public class UI_Kriptografi extends javax.swing.JFrame {
             int width = getWidth();
             int height = getHeight();
             
-            Color colorA = new Color(134, 143, 150);
-            Color colorB = new Color(89, 97, 100);
+            Color colorA = new Color(161, 196, 253);
+            Color colorB = new Color(194, 233, 251);
             GradientPaint gradPaint = new GradientPaint(0, height, colorA, width, 0, colorB);
             g2d.setPaint(gradPaint);
             g2d.fillRect(0, 0, width, height);
@@ -95,7 +95,7 @@ public class UI_Kriptografi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        L_Atas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        L_Atas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         L_Atas.setText("Plain-Text :");
 
         submit.setText("Encode");
@@ -105,6 +105,7 @@ public class UI_Kriptografi extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Mode :");
 
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -128,6 +129,7 @@ public class UI_Kriptografi extends javax.swing.JFrame {
 
         R_encode.setBackground(new java.awt.Color(134, 143, 150));
         Rmode.add(R_encode);
+        R_encode.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         R_encode.setText("Encode");
         R_encode.setBorder(null);
         R_encode.setOpaque(true);
@@ -156,14 +158,15 @@ public class UI_Kriptografi extends javax.swing.JFrame {
         TextArea2.setRows(5);
         jScrollPane2.setViewportView(TextArea2);
 
-        L_Bawah.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        L_Bawah.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         L_Bawah.setText("Cipher-Text :");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Key :");
 
         R_decode.setBackground(new java.awt.Color(134, 143, 150));
         Rmode.add(R_decode);
+        R_decode.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         R_decode.setText("Decode");
         R_decode.setBorder(null);
         R_decode.addActionListener(new java.awt.event.ActionListener() {
@@ -195,9 +198,9 @@ public class UI_Kriptografi extends javax.swing.JFrame {
                             .addComponent(L_Judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(R_encode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(R_decode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(R_decode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
