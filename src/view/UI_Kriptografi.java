@@ -15,6 +15,11 @@ import javax.swing.JTextField;
 
 import ErrorHandler.H_Error;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 
 /**
@@ -34,6 +39,29 @@ public class UI_Kriptografi extends javax.swing.JFrame {
         this.R_encode.setSelected(true);
         this.algorithm = algorithm;
         C_UI = new C_Kripto(this);
+        
+        R_encode.setOpaque(false);
+        R_encode.setContentAreaFilled(false);
+        R_encode.setBorderPainted(false);
+        
+        R_decode.setOpaque(false);
+        R_decode.setContentAreaFilled(false);
+        R_decode.setBorderPainted(false);
+    }
+    
+    class PanelGradient extends JPanel{
+        @Override
+        public void paintComponent(Graphics grap){
+            Graphics2D g2d = (Graphics2D) grap;
+            int width = getWidth();
+            int height = getHeight();
+            
+            Color colorA = new Color(134, 143, 150);
+            Color colorB = new Color(89, 97, 100);
+            GradientPaint gradPaint = new GradientPaint(0, height, colorA, width, 0, colorB);
+            g2d.setPaint(gradPaint);
+            g2d.fillRect(0, 0, width, height);
+        }
     }
 
     /**
@@ -46,60 +74,29 @@ public class UI_Kriptografi extends javax.swing.JFrame {
     private void initComponents() {
 
         Rmode = new javax.swing.ButtonGroup();
-        L_Judul = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        R_encode = new javax.swing.JRadioButton();
-        R_decode = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TextArea1 = new javax.swing.JTextArea();
+        jPanel1 = new PanelGradient();
         L_Atas = new javax.swing.JLabel();
-        L_Bawah = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TextArea2 = new javax.swing.JTextArea();
         submit = new javax.swing.JButton();
-        B_Back = new javax.swing.JButton();
-        TKey = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        L_Bawah1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         T_Langkah = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextArea1 = new javax.swing.JTextArea();
+        R_encode = new javax.swing.JRadioButton();
+        TKey = new javax.swing.JTextField();
+        L_Bawah1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TextArea2 = new javax.swing.JTextArea();
+        L_Bawah = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        R_decode = new javax.swing.JRadioButton();
+        B_Back = new javax.swing.JButton();
+        L_Judul = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        L_Judul.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        L_Judul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        L_Judul.setText("Judul");
-
-        jLabel1.setText("Mode :");
-
-        Rmode.add(R_encode);
-        R_encode.setText("Encode");
-        R_encode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R_encodeActionPerformed(evt);
-            }
-        });
-
-        Rmode.add(R_decode);
-        R_decode.setText("Decode");
-        R_decode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R_decodeActionPerformed(evt);
-            }
-        });
-
-        TextArea1.setColumns(20);
-        TextArea1.setRows(5);
-        jScrollPane1.setViewportView(TextArea1);
-
+        L_Atas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         L_Atas.setText("Plain-Text :");
-
-        L_Bawah.setText("Cipher-Text :");
-
-        TextArea2.setEditable(false);
-        TextArea2.setColumns(20);
-        TextArea2.setRows(5);
-        jScrollPane2.setViewportView(TextArea2);
 
         submit.setText("Encode");
         submit.addActionListener(new java.awt.event.ActionListener() {
@@ -108,28 +105,7 @@ public class UI_Kriptografi extends javax.swing.JFrame {
             }
         });
 
-        B_Back.setText("BACK");
-        B_Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_BackActionPerformed(evt);
-            }
-        });
-
-        TKey.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TKeyActionPerformed(evt);
-            }
-        });
-        TKey.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TKeyKeyPressed(evt);
-            }
-        });
-
-        jLabel5.setText("Key :");
-
-        L_Bawah1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        L_Bawah1.setText("Langkah");
+        jLabel1.setText("Mode :");
 
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -146,55 +122,115 @@ public class UI_Kriptografi extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(T_Langkah);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        TextArea1.setColumns(20);
+        TextArea1.setRows(5);
+        jScrollPane1.setViewportView(TextArea1);
+
+        R_encode.setBackground(new java.awt.Color(134, 143, 150));
+        Rmode.add(R_encode);
+        R_encode.setText("Encode");
+        R_encode.setBorder(null);
+        R_encode.setOpaque(true);
+        R_encode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R_encodeActionPerformed(evt);
+            }
+        });
+
+        TKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TKeyActionPerformed(evt);
+            }
+        });
+        TKey.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TKeyKeyPressed(evt);
+            }
+        });
+
+        L_Bawah1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L_Bawah1.setText("Langkah");
+
+        TextArea2.setEditable(false);
+        TextArea2.setColumns(20);
+        TextArea2.setRows(5);
+        jScrollPane2.setViewportView(TextArea2);
+
+        L_Bawah.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        L_Bawah.setText("Cipher-Text :");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Key :");
+
+        R_decode.setBackground(new java.awt.Color(134, 143, 150));
+        Rmode.add(R_decode);
+        R_decode.setText("Decode");
+        R_decode.setBorder(null);
+        R_decode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R_decodeActionPerformed(evt);
+            }
+        });
+
+        B_Back.setText("BACK");
+        B_Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_BackActionPerformed(evt);
+            }
+        });
+
+        L_Judul.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        L_Judul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L_Judul.setText("Judul");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(L_Judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(R_encode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(R_decode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(L_Bawah, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(L_Atas, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(75, 75, 75)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TKey, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(156, 156, 156))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(B_Back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(L_Bawah1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(178, 178, 178)))))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(L_Judul, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -204,100 +240,46 @@ public class UI_Kriptografi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(R_decode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(L_Bawah1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(B_Back, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(L_Atas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(B_Back, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(L_Atas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TKey, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TKey, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(82, 82, 82)
-                                        .addComponent(L_Bawah, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(110, 110, 110))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(L_Bawah, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(12, 12, 12))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    
-    private void R_encodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R_encodeActionPerformed
-        C_UI.C_RadioButtonE();
-    }//GEN-LAST:event_R_encodeActionPerformed
-
-    private void B_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BackActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        UI_Menu new_UI = new UI_Menu();
-        new_UI.setVisible(true);
-    }//GEN-LAST:event_B_BackActionPerformed
-
-    private void TKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TKeyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TKeyActionPerformed
-
-    private void R_decodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R_decodeActionPerformed
-        // TODO add your handling code here:
-        C_UI.C_RadioButtonD();
-    }//GEN-LAST:event_R_decodeActionPerformed
-
-    private void TKeyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKeyKeyPressed
-        // TODO add your handling code here:
-        // LIMIT 1
-        // if (algorithm == C_Kripto.ALGO_XOR) {
-        //     if (TKey.getText().length() >= 1 && !(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)){
-        //         TKey.setEditable(false);
-        //         H_Error.LimitField();
-        //     }
-        //     else{
-        //         TKey.setEditable(true);
-        //     }
-        // }
-        if (algorithm == C_Kripto.ALGO_RAIL || algorithm == C_Kripto.ALGO_SCYTALE){
-            if (evt.getKeyChar() >= '1' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-               TKey.setEditable(true);
-            }
-            else if(evt.getKeyChar() == '0'){
-                TKey.setEditable(false);
-                H_Error.zeroKey(); 
-            }
-            else{
-                TKey.setEditable(false);
-                H_Error.notInt(); 
-            }
-        }
-        else if (algorithm == C_Kripto.ALGO_SUPER){
-            if (evt.getKeyChar() >= '1' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-               TKey.setEditable(true);
-            }
-            else if(evt.getKeyChar() == '0'){
-                TKey.setEditable(false);
-                H_Error.zeroKey(); 
-            }
-            else{
-                TKey.setEditable(false);
-                H_Error.notInt(); 
-            } 
-        }
-        
-    }//GEN-LAST:event_TKeyKeyPressed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
@@ -309,6 +291,67 @@ public class UI_Kriptografi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_submitActionPerformed
 
+    private void R_encodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R_encodeActionPerformed
+        C_UI.C_RadioButtonE();
+    }//GEN-LAST:event_R_encodeActionPerformed
+
+    private void TKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TKeyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TKeyActionPerformed
+
+    private void TKeyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKeyKeyPressed
+        // TODO add your handling code here:
+        // LIMIT 1
+        // if (algorithm == C_Kripto.ALGO_XOR) {
+            //     if (TKey.getText().length() >= 1 && !(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE)){
+                //         TKey.setEditable(false);
+                //         H_Error.LimitField();
+                //     }
+            //     else{
+                //         TKey.setEditable(true);
+                //     }
+            // }
+        if (algorithm == C_Kripto.ALGO_RAIL || algorithm == C_Kripto.ALGO_SCYTALE){
+            if (evt.getKeyChar() >= '1' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                TKey.setEditable(true);
+            }
+            else if(evt.getKeyChar() == '0'){
+                TKey.setEditable(false);
+                H_Error.zeroKey();
+            }
+            else{
+                TKey.setEditable(false);
+                H_Error.notInt();
+            }
+        }
+        else if (algorithm == C_Kripto.ALGO_SUPER){
+            if (evt.getKeyChar() >= '1' && evt.getKeyChar() <= '9' || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                TKey.setEditable(true);
+            }
+            else if(evt.getKeyChar() == '0'){
+                TKey.setEditable(false);
+                H_Error.zeroKey();
+            }
+            else{
+                TKey.setEditable(false);
+                H_Error.notInt();
+            }
+        }
+    }//GEN-LAST:event_TKeyKeyPressed
+
+    private void R_decodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R_decodeActionPerformed
+        // TODO add your handling code here:
+        C_UI.C_RadioButtonD();
+    }//GEN-LAST:event_R_decodeActionPerformed
+
+    private void B_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        UI_Menu new_UI = new UI_Menu();
+        new_UI.setVisible(true);
+    }//GEN-LAST:event_B_BackActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -457,6 +500,7 @@ public class UI_Kriptografi extends javax.swing.JFrame {
     private javax.swing.JTextArea TextArea2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
